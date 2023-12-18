@@ -1,5 +1,0 @@
----
-"vsrandom": patch
----
-
-Initial commit
