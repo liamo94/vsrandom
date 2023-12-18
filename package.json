@@ -1,6 +1,6 @@
 {
   "name": "vsrandom",
-  "version": "0.0.2",
+  "version": "0.0.1",
   "description": "A type-safe and flexible random function",
   "main": "./dist/index.js",
   "repository": "https://github.com/liamo94/vsrandom",
@@ -21,8 +21,5 @@
     "tsup": "^8.0.1",
     "typescript": "^5.3.3",
     "vitest": "^1.0.4"
-  },
-  "publishConfig": {
-    "access": "public"
   }
 }
