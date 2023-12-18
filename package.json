@@ -1,0 +1,23 @@
+{
+  "name": "vsrandom",
+  "version": "0.0.1",
+  "description": "A type-safe and flexible random function",
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "dev": "vitest",
+    "test": "vitest run",
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "release": "changeset publish"
+  },
+  "keywords": [],
+  "author": "Liam O'Donnell",
+  "license": "ISC",
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "tsup": "^8.0.1",
+    "typescript": "^5.3.3",
+    "vitest": "^1.0.4"
+  }
+}
