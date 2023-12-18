@@ -13,7 +13,7 @@ export function random<T>(x: number | T[], y?: number): number | T | T[] {
     throw new Error(`${y} is greater than ${x}`);
   }
   if (x instanceof Array && isNotUndefined(y) && y > x.length) {
-    throw new Error(`Array is of size ${x.length}, which is greater than ${y}`);
+    throw new Error(`Array is of size ${x.length}, which is less than ${y}`);
   }
   if (x instanceof Array) {
     if (y !== undefined) {
@@ -59,7 +59,7 @@ function compareNumber(low: number, high?: number): number {
       : Math.floor(Math.random() * low) + 1;
   }
   // We need to add an offset to the random number to ensure
-  //we get the correct number of digits and it is inclusive
+  // we get the correct number of digits and it is inclusive
   const offset = parseFloat(
     `0.${Array(digits - 1)
       .fill(0)
