@@ -3,8 +3,10 @@
   "version": "0.0.2",
   "description": "A type-safe and flexible random function",
   "main": "./dist/index.js",
+  "repository": "https://github.com/liamo94/vsrandom",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
+  "private": false,
   "scripts": {
     "dev": "vitest",
     "test": "vitest run",
