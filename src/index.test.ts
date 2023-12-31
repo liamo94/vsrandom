@@ -27,6 +27,15 @@ describe("random", () => {
     expect(result).toEqual(expect.any(Array));
     expect(result.length).toBe(2);
   });
+  it("Should handle single array and number", () => {
+    const arr = [1, 2, 3, 4, 5];
+    const result = random(arr, 5);
+    result.forEach((r) => {
+      expect(arr.includes(r)).toBe(true);
+    });
+    expect(result).toEqual(expect.any(Array));
+    expect(result.length).toBe(5);
+  });
   it("Should throw an error if array is too large", () => {
     const arr = [1, 2, 3, 4, 5];
     expect(() => random(arr, 6)).toThrowError();

@@ -17,7 +17,7 @@ export function random<T>(x: number | T[], y?: number): number | T | T[] {
   }
   if (x instanceof Array) {
     if (y !== undefined) {
-      return randomArrayValues(x);
+      return randomArrayValues(x, y);
     }
     const index = Math.floor(Math.random() * x.length);
     return x[index];
@@ -37,7 +37,7 @@ function countDecimals(value: number): number {
 function randomArrayValues<T>(arr: T[], quantity = 1): T[] {
   const newArray: T[] = [];
   const values = [...arr];
-  for (let i = 0; i <= quantity; i++) {
+  for (let i = 0; i <= quantity - 1; i++) {
     if (!values.length) break;
     const value = random(values);
     newArray.push(value);

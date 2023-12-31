@@ -30,3 +30,16 @@ import { random } from "vsrandom";
 random([1, 2, 3]); // single item from array
 random([1, 2, 3], 2); // new array containing n items from original array
 ```
+
+#### Example: Lottery numbers
+
+```typescript
+import { random } from "vsrandom";
+
+const MIN = 1;
+const MAX = 50;
+
+const numbers = Array.from({ length: MAX - (MIN - 1) }, (_, i) => i + MIN);
+
+const lotteryNumbers = random(numbers, 5); // array of 5 random numbers between 1 and 50 inclusive and unique
+```
