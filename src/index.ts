@@ -10,13 +10,13 @@ export function random<T>(arr: T[], select: number): T[];
 export function random(low: number, high?: number): number;
 export function random<T>(x: number | T[], y?: number): number | T | T[] {
   if (typeof x === "number" && typeof y === "number" && x > y) {
-    throw new Error(`${y} is greater than ${x}`);
+    throw new Error(`${x} is greater than ${y}`);
   }
   if (x instanceof Array && isNotUndefined(y) && y > x.length) {
     throw new Error(`Array is of size ${x.length}, which is less than ${y}`);
   }
   if (x instanceof Array) {
-    if (y !== undefined) {
+    if (isNotUndefined(y)) {
       return randomArrayValues(x, y);
     }
     const index = Math.floor(Math.random() * x.length);
