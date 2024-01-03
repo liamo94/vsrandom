@@ -2,11 +2,10 @@ import { describe, expect, it } from "vitest";
 import { random } from ".";
 
 describe("random", () => {
-  it("Should handle single array", () => {
-    const arr = [1, 2, 3, 4, 5];
-    const result = random(arr);
-    expect(arr.includes(result)).toBe(true);
-    expect(typeof result).toBe("number");
+  it("Should handle no arguments", () => {
+    const result = random();
+    expect(result).toBeGreaterThanOrEqual(0);
+    expect(result).toBeLessThanOrEqual(1);
   });
   it("Should handle single item single array", () => {
     const arr = [4];
@@ -81,6 +80,11 @@ describe("random", () => {
     const result = random(low, high);
     expect(result).toBeLessThanOrEqual(high);
     expect(result).toBeGreaterThanOrEqual(low);
+  });
+  it("Should handle one float", () => {
+    const value = 2.78;
+    const result = random(value);
+    expect(result).toBeLessThanOrEqual(value);
   });
   it("Should throw an error if low > high", () => {
     expect(() => random(5, 2)).toThrowError();

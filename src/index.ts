@@ -5,10 +5,14 @@
  * - If an array is provided, returns a random value from the array
  * - If an array and a number, n, are provided, returns n random distinct values from the array
  */
+export function random(): number;
 export function random<T>(arr: T[]): T;
 export function random<T>(arr: T[], select: number): T[];
 export function random(low: number, high?: number): number;
-export function random<T>(x: number | T[], y?: number): number | T | T[] {
+export function random<T>(x?: number | T[], y?: number): number | T | T[] {
+  if (!isNotUndefined(x)) {
+    return Math.random();
+  }
   if (typeof x === "number" && typeof y === "number" && x > y) {
     throw new Error(`${x} is greater than ${y}`);
   }

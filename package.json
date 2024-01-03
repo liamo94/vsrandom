@@ -1,6 +1,6 @@
 {
   "name": "vsrandom",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "A type-safe and flexible random function",
   "main": "./dist/index.js",
   "repository": {
@@ -16,7 +16,10 @@
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "release": "changeset publish"
   },
-  "keywords": [],
+  "keywords": [
+    "random",
+    "type-safe"
+  ],
   "author": "Liam O'Donnell",
   "license": "ISC",
   "devDependencies": {
