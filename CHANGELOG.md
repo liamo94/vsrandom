@@ -1,5 +1,11 @@
 # vsrandom
 
+## 0.0.3
+
+### Patch Changes
+
+- 43d8578: handle single array item
+
 ## 0.0.2
 
 ### Patch Changes
