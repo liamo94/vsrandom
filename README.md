@@ -9,6 +9,7 @@ Type safe utility function to return a random number or array item, depending on
 ```typescript
 import { random } from "vsrandom";
 
+random(); // number between 0 & 1 (same behaviour as `Math.random()`)
 random(10); // number between 1 & 10
 random(5, 10); // number between 5 & 10
 ```
