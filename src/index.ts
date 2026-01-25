@@ -26,13 +26,41 @@ export function random<T>(x?: number | T[], y?: number): number | T | T[] {
     const index = Math.floor(Math.random() * x.length);
     return x[index];
   } else {
+    if (typeof x === "number" && !isNotUndefined(y) && x < 1) {
+      throw new Error(
+        `Single number argument must be >= 1. Received ${x}. Use two arguments for negative ranges (e.g., random(-5, -1)).`
+      );
+    }
     return compareNumber(x, y);
   }
 }
 
 function countDecimals(value: number): number {
   if (Math.floor(value) === value) return 0;
-  return isNotUndefined(value) ? value.toString().split(".")[1].length : 0;
+  return value.toString().split(".")[1].length;
+}
+
+/**
+ * Generate a random float by converting to integers, doing exact integer math, then converting back.
+ * This avoids floating point rounding issues that could produce values outside the specified range.
+ */
+function randomFloat({ low, high, digits }: { low: number, high?: number, digits: number }): number {
+  const multiplier = Math.pow(10, digits);
+  if (high !== undefined) {
+    // Range case: random between low and high (inclusive)
+    const lowInt = Math.round(low * multiplier);
+    const highInt = Math.round(high * multiplier);
+    const randomInt =
+      Math.floor(Math.random() * (highInt - lowInt + 1)) + lowInt;
+    return randomInt / multiplier;
+  } else {
+    // Single value case: random between 1 and low (matching integer behavior)
+    const minInt = multiplier;
+    const maxInt = Math.round(low * multiplier);
+    const randomInt =
+      Math.floor(Math.random() * (maxInt - minInt + 1)) + minInt;
+    return randomInt / multiplier;
+  }
 }
 
 /**
@@ -57,24 +85,14 @@ function compareNumber(low: number, high?: number): number {
   const digits = high
     ? Math.max(countDecimals(low), countDecimals(high))
     : countDecimals(low);
+
   if (digits === 0) {
     return high
       ? Math.floor(Math.random() * (high - low + 1)) + low
       : Math.floor(Math.random() * low) + 1;
   }
-  // We need to add an offset to the random number to ensure
-  // we get the correct number of digits and it is inclusive
-  const offset = parseFloat(
-    `0.${Array(digits - 1)
-      .fill(0)
-      .join("")}1`
-  );
-  return parseFloat(
-    (high
-      ? Math.random() * (high - low + offset) + low
-      : Math.random() * low
-    ).toFixed(digits)
-  );
+
+  return randomFloat({ low, high, digits });
 }
 
 const isNotUndefined = <T>(value: T | undefined): value is T =>

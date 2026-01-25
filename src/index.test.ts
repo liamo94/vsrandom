@@ -85,8 +85,25 @@ describe("random", () => {
     const value = 2.78;
     const result = random(value);
     expect(result).toBeLessThanOrEqual(value);
+    expect(result).toBeGreaterThanOrEqual(1);
   });
   it("Should throw an error if low > high", () => {
     expect(() => random(5, 2)).toThrowError();
+  });
+  it("Should throw an error for single negative number", () => {
+    expect(() => random(-5)).toThrowError();
+  });
+  it("Should throw an error for single number less than 1", () => {
+    expect(() => random(0.5)).toThrowError();
+  });
+  it("Should handle negative ranges", () => {
+    const result = random(-5, -1);
+    expect(result).toBeGreaterThanOrEqual(-5);
+    expect(result).toBeLessThanOrEqual(-1);
+  });
+  it("Should handle negative to positive ranges", () => {
+    const result = random(-2, 2);
+    expect(result).toBeGreaterThanOrEqual(-2);
+    expect(result).toBeLessThanOrEqual(2);
   });
 });
